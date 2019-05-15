@@ -1,0 +1,1 @@
+Vue.component('FullSearch', require('./FullSearch.vue'))
