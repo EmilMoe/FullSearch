@@ -46,7 +46,7 @@
         "emilmoe": {
             "autoloader": [
                 "emilmoe/fullsearch/src/resources/js",
-                "emilmoe/fullsearch/src/resources/sass/account"
+                "emilmoe/fullsearch/src/resources/sass/fullsearch"
             ]
         }
     }
