@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="hints" v-show="! (loadPage || debounce || results.length > 0)">
-            {{ __('./i18n.json', 'full-search.open') }}<br>
-            {{ __('./i18n.json', 'full-search.close') }}
+            {{ __('open') }}<br>
+            {{ __('close') }}
         </div>
         <div class="results">
             <div class="row">
