@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="hints" v-show="! (loadPage || debounce || results.length > 0)">
-            Use <b>CTRL</b> + <b>SHIFT</b> + <b>F</b> to open search from anywhere.<br>
-            Press <b>ESC</b> to close it again at any time.
+            {{ __('./i18n.json', 'full-search.open') }}<br>
+            {{ __('./i18n.json', 'full-search.close') }}
         </div>
         <div class="results">
             <div class="row">

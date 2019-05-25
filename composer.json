@@ -15,7 +15,8 @@
         "illuminate/support": "~5.8",
         "php": "~7.2",
         "emilmoe/groundwork": "*",
-        "emilmoe/autoloader": "*"
+        "emilmoe/autoloader": "*",
+        "emilmoe/base": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0"

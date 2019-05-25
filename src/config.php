@@ -29,6 +29,9 @@ return [
             'as'      => 'Users',
             'route'   => 'users.show',
             'columns' => [['firstname', 'lastname']],
+            'except'  => [
+                ['active', false],
+            ],
             'results' => [
                 'title' => ['firstname', 'lastname'],
                 'info'  => ['email'],
