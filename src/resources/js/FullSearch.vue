@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="hints" v-show="! (loadPage || debounce || results.length > 0)">
-            {{ __('open') }}<br>
-            {{ __('close') }}
+            {{ $t('open') }}<br>
+            {{ $t('close') }}
         </div>
         <div class="results">
             <div class="row">
@@ -345,3 +345,12 @@ export default {
     }
 }
 </script>
+
+<i18n>
+{
+    'en': {
+        'open': 'Press CTRL + SHIFT + F to open search',
+        'close': 'Press ESC to leave search'
+    }
+}
+</i18n>
