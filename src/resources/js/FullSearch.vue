@@ -348,9 +348,9 @@ export default {
 
 <i18n>
 {
-    'en': {
-        'open': 'Press CTRL + SHIFT + F to open search',
-        'close': 'Press ESC to leave search'
+    "en": {
+        "open": "Press CTRL + SHIFT + F to open search",
+        "close": "Press ESC to leave search"
     }
 }
 </i18n>
