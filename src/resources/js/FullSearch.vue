@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="hints" v-show="! (loadPage || debounce || results.length > 0)">
-            Press CTRL + SHIFT + F to open search<br>
-            Press ESC to leave search
+            Press <strong>CTRL</strong> + <strong>SHIFT</strong> + <strong>F</strong> to open search<br>
+            Press <strong>ESC</strong> to leave search
         </div>
         <div class="results">
             <div class="row">
