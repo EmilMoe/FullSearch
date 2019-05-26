@@ -77,7 +77,7 @@ class FullSearch
     private function addExceptions(Builder &$builder, array $exceptions): void
     {
         collect($exceptions)->map(function ($exception) use (&$builder) {
-            $builder->whereNot($exception[0], '=', $exception[1]);
+            $builder->where($exception[0], '<>', $exception[1]);
         });
     }
     
