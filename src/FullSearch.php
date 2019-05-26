@@ -20,6 +20,10 @@ class FullSearch
         collect(config('full-search.include'))->each(function ($specification, $class) use ($keyword, &$results) {
             $builder = $class::select(array_merge($this->getColumns($specification['columns']), ['id']));
 
+            if (isset($specification['except']) && is_array($specification['except'])) {
+                $this->addExceptions($builder, $specification['except']);
+            }
+
             collect($specification['columns'])->each(function ($column) use ($keyword, &$builder) {
                 if (is_array($column)) {
                     $this->addConcatColumns($builder, $keyword, $column);
@@ -52,6 +56,20 @@ class FullSearch
         });
 
         return $results;
+    }
+
+    /**
+     * Apply simple exceptions. More advanced must use a filter.
+     *
+     * @param Builder &$builder
+     * @param array $exceptions
+     * @return void
+     */
+    private function addExceptions(Builder &$builder, array $exceptions): void
+    {
+        foreach ($exceptions as $column => $value) {
+            $builder->whereNot($column, '=', $value);
+        }
     }
     
     /**
