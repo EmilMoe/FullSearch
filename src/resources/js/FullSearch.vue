@@ -9,7 +9,7 @@
         </div>
         <div class="search" v-show="! loadPage">
             <div>
-                <input v-model="keyword" type="text" name="keyword" placeholder="Enter keyword.." v-el:keyword>
+                <input v-model="keyword" type="text" name="keyword" placeholder="Type to search" v-el:keyword>
                 <ui-progress-linear
                         show
                         :type="debounce === null ? 'determinate' : 'indeterminate'"
@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="hints" v-show="! (loadPage || debounce || results.length > 0)">
-            {{ $t('open') }}<br>
-            {{ $t('close') }}
+            Press CTRL + SHIFT + F to open search<br>
+            Press ESC to leave search
         </div>
         <div class="results">
             <div class="row">
@@ -345,12 +345,3 @@ export default {
     }
 }
 </script>
-
-<i18n>
-{
-    "en": {
-        "open": "Press CTRL + SHIFT + F to open search",
-        "close": "Press ESC to leave search"
-    }
-}
-</i18n>
