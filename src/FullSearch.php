@@ -24,6 +24,10 @@ class FullSearch
                 $this->addExceptions($builder, $specification['except']);
             }
 
+            if (isset($specification['filter'])) {
+                $this->addFilter($builder, $specification['filter']);
+            }
+
             collect($specification['columns'])->each(function ($column) use ($keyword, &$builder) {
                 if (is_array($column)) {
                     $this->addConcatColumns($builder, $keyword, $column);
@@ -58,6 +62,11 @@ class FullSearch
         return $results;
     }
 
+    private function addFilter(Builder &$builder, $filter): void 
+    {
+
+    }
+
     /**
      * Apply simple exceptions. More advanced must use a filter.
      *
@@ -67,9 +76,9 @@ class FullSearch
      */
     private function addExceptions(Builder &$builder, array $exceptions): void
     {
-        foreach ($exceptions as $column => $value) {
-            $builder->whereNot($column, '=', $value);
-        }
+        collect($exceptions)->map(function ($exception) use (&$builder) {
+            $builder->whereNot($exception[0], '=', $exception[1]);
+        });
     }
     
     /**
