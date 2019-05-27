@@ -4,6 +4,7 @@ namespace EmilMoe\FullSearch;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use \Closure;
 
 class FullSearch
 {
@@ -24,29 +25,41 @@ class FullSearch
                 $this->addExceptions($builder, $specification['except']);
             }
 
-            if (isset($specification['filter'])) {
+            if (isset($specification['filter']) && is_callable($specification['filter'])) {
                 $this->addFilter($builder, $specification['filter']);
             }
 
-            collect($specification['columns'])->each(function ($column) use ($keyword, &$builder) {
-                if (is_array($column)) {
-                    $this->addConcatColumns($builder, $keyword, $column);
-                }
+            $builder->where(function ($builder) use ($specification, $keyword) {
+                collect($specification['columns'])->each(function ($column) use ($keyword, &$builder) {
+                    if (is_array($column)) {
+                        $this->addConcatColumns($builder, $keyword, $column);
+                    }
 
-                if (! is_array($column)) {
-                    $this->addColumn($builder, $keyword, $column);
-                }
+                    if (! is_array($column)) {
+                        $this->addColumn($builder, $keyword, $column);
+                    }
+                });
             });
 
             $results[] = [
                 'title'   => $specification['as'],
                 'results' => $builder->limit(config('full-search.limit'))->get()->map(function ($result) use ($specification) {
                     $title = implode(' ', collect($specification['results']['title'])->map(function ($title) use ($result) {
-                        return $result->$title;
+                        if (is_callable($title)) {
+                            return call_user_func($title, $result);
+                        }
+                        else {
+                            return $result->$title;
+                        }
                     })->toArray());
 
                     $info = implode(' ', collect($specification['results']['info'])->map(function ($info) use ($result) {
-                        return $result->$info;
+                        if (is_callable($info)) {
+                            return call_user_func($info, $result);
+                        }
+                        else {
+                            return $result->$info;
+                        }
                     })->toArray());
 
                     return [
@@ -62,9 +75,9 @@ class FullSearch
         return $results;
     }
 
-    private function addFilter(Builder &$builder, $filter): void 
+    private function addFilter(Builder &$builder, Closure $filter): void 
     {
-
+        $builder->where($filter);
     }
 
     /**
