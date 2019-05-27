@@ -75,9 +75,16 @@ class FullSearch
         return $results;
     }
 
+    /**
+     * Custom filter to query.
+     *
+     * @param Builder &$builder
+     * @param Closure $filter
+     * @return void
+     */
     private function addFilter(Builder &$builder, Closure $filter): void 
     {
-        $builder->where($filter);
+        call_user_func($filter, $builder);
     }
 
     /**
