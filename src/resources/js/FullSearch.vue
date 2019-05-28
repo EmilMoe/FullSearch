@@ -308,12 +308,12 @@ export default {
                     document.querySelector('body').classList.add('no-scroll')
                 }, 300)
 
-                document.addEventListener('keyup', (event) => { this.attachMouseEvents(event) })
+                document.addEventListener('keyup', this.attachMouseEvents)
                 this.$els.keyword.focus()
             }
             else {
                 document.querySelector('body').classList.remove('no-scroll')
-                document.removeEventListener('keyup', (event) => { this.attachMouseEvents(event) })
+                document.removeEventListener('keyup', this.attachMouseEvents)
 
                 setTimeout(() => {
                     this.$els.keyword.blur()
