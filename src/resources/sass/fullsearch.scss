@@ -143,7 +143,10 @@ body {
     }
 
     .full-search-logo {
-        text-align: center;
+        position: absolute;
+        bottom: 2vh;
+        left: 50%;
+        min-width: 15vw;
 
         img {
             filter: grayscale(100%);
