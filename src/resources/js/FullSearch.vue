@@ -59,11 +59,19 @@
                 <div class="col-sm-1" v-show="loadPage || (debounce && results.length === 0)"></div>
             </div>
         </div>
+        <div v-if="logo !== ''" class="fullsearch-logo">
+            <img :src="logo" alt="">
+        </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: {
+        logo: {
+            type: String
+        }
+    },
     data() {
         return {
             open:       false,

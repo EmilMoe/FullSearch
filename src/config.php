@@ -12,6 +12,11 @@ return [
     'limit' => 10,
 
     /**
+     * If you want to display a logo at the bottom of the search assign it here.
+     */
+    'logo' => '',
+
+    /**
      * Categories (tables) that should be searched throught.
      *
      * Refer to the Eloquent model as the first property.
