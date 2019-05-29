@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="logo !== ''" class="fullsearch-logo">
+        <div v-if="logo !== ''" class="full-search-logo">
             <img :src="logo" alt="">
         </div>
     </div>
