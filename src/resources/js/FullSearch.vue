@@ -1,62 +1,64 @@
 <template>
     <div :class="{'full-search': true, 'open': open}">
-        <div class="close" v-show="! loadPage">
-            <ui-icon-button
-                    icon="close"
-                    type="clear"
-                    @click="close">
-            </ui-icon-button>
-        </div>
-        <div class="search" v-show="! loadPage">
-            <div>
-                <input v-model="keyword" type="text" name="keyword" placeholder="Type to search" v-el:keyword>
-                <ui-progress-linear
-                        show
-                        :type="debounce === null ? 'determinate' : 'indeterminate'"
-                        :value="100">
-                </ui-progress-linear>
+        <div>
+            <div class="full-search-close" v-show="! loadPage">
+                <ui-icon-button
+                        icon="close"
+                        type="clear"
+                        @click="close">
+                </ui-icon-button>
             </div>
-            <div>
-                <i class="material-icons">search</i>
-            </div>
-        </div>
-        <div class="hints" v-show="! (loadPage || debounce || results.length > 0)">
-            Press <strong>CTRL</strong> + <strong>SHIFT</strong> + <strong>F</strong> to open search<br>
-            Press <strong>ESC</strong> to leave search
-        </div>
-        <div class="results">
-            <div class="row">
-                <div class="col-sm-1"></div>
-                <div class="col" v-show="loadPage || (debounce && results.length === 0)">
-                    <ui-progress-circular
+            <div class="search" v-show="! loadPage">
+                <div>
+                    <input v-model="keyword" type="text" name="keyword" placeholder="Type to search" v-el:keyword>
+                    <ui-progress-linear
                             show
-                            color="black"
-                            :stroke="2"
-                            :size="140">
-                    </ui-progress-circular>
+                            :type="debounce === null ? 'determinate' : 'indeterminate'"
+                            :value="100">
+                    </ui-progress-linear>
                 </div>
-                <template v-for="(list, result) in results">
-                    <div class="col" v-show="! loadPage ">
-                        <h4>{{ result.title }}</h4>
-                        <div class="row">
-                            <small v-if="result.results.length === 0">No results</small>
-                            <table :id="'full-search-list-'+ list" v-else>
-                                <tr
-                                        v-for="(item, found) in result.results">
-                                    <td
-                                            @click="enter"
-                                            @mouseover="setListAndItem(list, item)"
-                                            :class="{hover: list ===activeList && item === activeItem}">
-                                        <strong>{{ found.title }}</strong>
-                                        {{ found.info }}
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                <div>
+                    <i class="material-icons">search</i>
+                </div>
+            </div>
+            <div class="hints" v-show="! (loadPage || debounce || results.length > 0)">
+                Press <strong>CTRL</strong> + <strong>SHIFT</strong> + <strong>F</strong> to open search<br>
+                Press <strong>ESC</strong> to leave search
+            </div>
+            <div class="results">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col" v-show="loadPage || (debounce && results.length === 0)">
+                        <ui-progress-circular
+                                show
+                                color="black"
+                                :stroke="2"
+                                :size="140">
+                        </ui-progress-circular>
                     </div>
-                    <div class="col-sm-1" v-show="! loadPage"></div>
-                </template>
-                <div class="col-sm-1" v-show="loadPage || (debounce && results.length === 0)"></div>
+                    <template v-for="(list, result) in results">
+                        <div class="col" v-show="! loadPage ">
+                            <h4>{{ result.title }}</h4>
+                            <div class="row">
+                                <small v-if="result.results.length === 0">No results</small>
+                                <table :id="'full-search-list-'+ list" v-else>
+                                    <tr
+                                            v-for="(item, found) in result.results">
+                                        <td
+                                                @click="enter"
+                                                @mouseover="setListAndItem(list, item)"
+                                                :class="{hover: list ===activeList && item === activeItem}">
+                                            <strong>{{ found.title }}</strong>
+                                            {{ found.info }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-1" v-show="! loadPage"></div>
+                    </template>
+                    <div class="col-sm-1" v-show="loadPage || (debounce && results.length === 0)"></div>
+                </div>
             </div>
         </div>
         <div v-if="logo !== ''" class="fullsearch-logo">

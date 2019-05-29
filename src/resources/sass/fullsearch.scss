@@ -11,6 +11,9 @@ body {
         transform: scale(1);
     }
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     transition: 300ms ease-in-out;
     width: 100vw;
     height: 100vh;
@@ -22,7 +25,7 @@ body {
     transform: scale(0.8);
     overflow: scroll;
 
-    > .close {
+    .full-search-close {
         position: absolute;
         top: 1rem;
         right: 1rem;
@@ -130,6 +133,16 @@ body {
                     }
                 }
             }
+        }
+    }
+
+    .full-search-logo {
+        text-align: center;
+
+        img {
+            filter: grayscale(100%);
+            opacity: 0.25;
+            max-width: 15vw;
         }
     }
 }
