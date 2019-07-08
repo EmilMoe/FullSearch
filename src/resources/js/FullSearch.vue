@@ -290,6 +290,12 @@ export default {
                 this.debounce = null
                 this.results  = response.data
             })
+        },
+        /**
+         * Overrides the default browser back behaviour to close the search view.
+         */
+        overrideBackButton() {
+            this.close()
         }
     },
     watch: {
@@ -314,16 +320,20 @@ export default {
          */
         open(open) {
             if (open) {
+                history.pushState('full-search', 'Search', '#search')
+
                 setTimeout(() => {
                     document.querySelector('body').classList.add('no-scroll')
                 }, 300)
 
                 document.addEventListener('keyup', this.attachMouseEvents)
+                document.addEventListener('popstate', this.overrideBackButton)
                 this.$els.keyword.focus()
             }
             else {
                 document.querySelector('body').classList.remove('no-scroll')
                 document.removeEventListener('keyup', this.attachMouseEvents)
+                document.removeEventListener('popstate', this.overrideBackButton)
 
                 setTimeout(() => {
                     this.$els.keyword.blur()
