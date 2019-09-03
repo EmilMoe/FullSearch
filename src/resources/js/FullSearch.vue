@@ -10,7 +10,7 @@
             </div>
             <div class="search" v-show="! loadPage">
                 <div>
-                    <input v-model="keyword" type="text" name="keyword" placeholder="Type to search" v-el:keyword>
+                    <input v-model="keyword" type="text" name="keyword" placeholder="Type to search" ref="keyword">
                     <ui-progress-linear
                             show
                             :type="debounce === null ? 'determinate' : 'indeterminate'"
@@ -85,7 +85,7 @@ export default {
             loadPage:   false,
         }
     },
-    ready() {
+    mounted() {
         document.addEventListener('keyup', event => {
             if (this.open) {
                 return
@@ -307,10 +307,10 @@ export default {
          */
         activeItem(item) {
             if (item === -1) {
-                this.$els.keyword.focus()
+                this.$refs.keyword.focus()
             }
             else {
-                this.$els.keyword.blur()
+                this.$refs.keyword.blur()
             }
         },
         /**
@@ -328,7 +328,7 @@ export default {
 
                 document.addEventListener('keyup', this.attachMouseEvents)
                 document.addEventListener('popstate', this.overrideBackButton)
-                this.$els.keyword.focus()
+                this.$refs.keyword.focus()
             }
             else {
                 document.querySelector('body').classList.remove('no-scroll')
@@ -336,7 +336,7 @@ export default {
                 document.removeEventListener('popstate', this.overrideBackButton)
 
                 setTimeout(() => {
-                    this.$els.keyword.blur()
+                    this.$refs.keyword.blur()
                     this.keyword            = ''
                     clearTimeout(this.debounce)
                     this.debounce           = null

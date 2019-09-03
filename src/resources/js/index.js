@@ -1,1 +1,3 @@
-Vue.component('FullSearch', require('./FullSearch.vue'))
+Vue.component('FullSearch', (resolve) => { require([
+    './FullSearch'
+], resolve) })
