@@ -36,14 +36,14 @@
                                 :size="140">
                         </ui-progress-circular>
                     </div>
-                    <template v-for="(list, result) in results">
+                    <template v-for="(result, list) in results">
                         <div class="col" v-show="! loadPage ">
                             <h4>{{ result.title }}</h4>
                             <div class="row">
                                 <small v-if="result.results.length === 0">No results</small>
                                 <table :id="'full-search-list-'+ list" v-else>
                                     <tr
-                                            v-for="(item, found) in result.results">
+                                            v-for="(found, item) in result.results">
                                         <td
                                                 @click="enter"
                                                 @mouseover="setListAndItem(list, item)"
