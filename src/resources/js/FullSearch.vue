@@ -282,7 +282,7 @@ export default {
          * Query server for search results.
          */
         query() {
-            this.$http.get('api/full-search?keyword='+ this.keyword).then(response => {
+            this.axios.get('api/full-search?keyword='+ this.keyword).then(response => {
                 if (this.debounce === null) {
                     return
                 }
