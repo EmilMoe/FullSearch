@@ -153,7 +153,7 @@ export default {
             this.activeList = list
             this.activeItem = item
         },
-        /** 
+        /**
          * Attach key click events.
          */
         attachMouseEvents(event) {
@@ -259,9 +259,14 @@ export default {
             }
         },
         /**
-         * On key enter or mouse click, when option i selected.
+         * On key enter or mouse click, when option is selected.
+         * Method will be ignored if there isn't an active list or item.
          */
         enter() {
+            if (! this.activeItem || ! this.activeList) {
+                return
+            }
+
             setTimeout(() => {
                 this.loadPage = true
             }, 500)
@@ -269,7 +274,7 @@ export default {
             this.$el.querySelector('.results table#full-search-list-'+ this.activeList)
                 .querySelectorAll('td')[this.activeItem]
                 .classList.add('active')
-            
+
             window.location.href = this.results[this.activeList].results[this.activeItem].url
         },
         /**
@@ -346,7 +351,7 @@ export default {
                 }, 200)
             }
         },
-        /** 
+        /**
          * Whenever keyword is changed, query the server but debounce it for 500ms to avoid throttle.
          * If Full Search is not open, do not initiate a search.
          *
