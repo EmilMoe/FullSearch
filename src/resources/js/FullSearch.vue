@@ -263,7 +263,7 @@ export default {
          * Method will be ignored if there isn't an active list or item.
          */
         enter() {
-            if (! this.activeItem || ! this.activeList) {
+            if (this.activeItem < 0 || this.activeList < 0) {
                 return
             }
 
