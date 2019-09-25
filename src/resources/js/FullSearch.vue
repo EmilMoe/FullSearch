@@ -76,13 +76,13 @@ export default {
     },
     data() {
         return {
-            open:       false,
-            keyword:    '',
-            debounce:   null,
-            results:    [],
-            activeList: -1,
-            activeItem: -1,
-            loadPage:   false,
+            open:          false,
+            keyword:       '',
+            debounce:      null,
+            results:       [],
+            activeList:    -1,
+            activeItem:    -1,
+            loadPage:      false,
         }
     },
     mounted() {
@@ -301,6 +301,8 @@ export default {
          */
         overrideBackButton() {
             this.close()
+            history.pushState({ preventBack: false }, '')
+            history.go(1)
         }
     },
     watch: {
@@ -332,13 +334,13 @@ export default {
                 }, 300)
 
                 document.addEventListener('keyup', this.attachMouseEvents)
-                document.addEventListener('popstate', this.overrideBackButton)
+                window.addEventListener('popstate', this.overrideBackButton)
                 this.$refs.keyword.focus()
             }
             else {
                 document.querySelector('body').classList.remove('no-scroll')
                 document.removeEventListener('keyup', this.attachMouseEvents)
-                document.removeEventListener('popstate', this.overrideBackButton)
+                window.removeEventListener('popstate', this.overrideBackButton)
 
                 setTimeout(() => {
                     this.$refs.keyword.blur()
