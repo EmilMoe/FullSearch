@@ -119,8 +119,8 @@ body {
                     color: color('gray-dark');
                     padding: .5rem 1rem;
 
-                    &.hover {
-                        background: theme-color-level(primary, -5);
+                    &:hover {
+                        background: theme-color-level('primary', -10);
                         border-radius: 5px;
                     }
 
