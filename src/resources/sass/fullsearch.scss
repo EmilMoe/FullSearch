@@ -120,7 +120,7 @@ body {
                     padding: .5rem 1rem;
 
                     &.hover {
-                        background: theme-color-level('primary'), .3);
+                        background: theme-color-level('primary', .3);
                         border-radius: 5px;
                     }
 
