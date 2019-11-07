@@ -120,7 +120,7 @@ body {
                     padding: .5rem 1rem;
 
                     &.hover {
-                        background: rgba(theme-color('primary'), .3);
+                        background: lighten(theme-color('primary'), .3);
                         border-radius: 5px;
                     }
 
