@@ -116,7 +116,7 @@ body {
 
                 td {
                     cursor: pointer;
-                    color: $color-gray-dark;
+                    color: color('gray-dark');
                     padding: .5rem 1rem;
 
                     &.hover {
