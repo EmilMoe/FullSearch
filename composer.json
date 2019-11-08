@@ -14,8 +14,6 @@
     "require": {
         "illuminate/support": "~5.8.0|^6.0",
         "php": "~7.2",
-        "emilmoe/groundwork": "*",
-        "emilmoe/autoloader": "*",
         "emilmoe/base": "*"
     },
     "require-dev": {
