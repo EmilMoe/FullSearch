@@ -64,7 +64,7 @@ class FullSearch
 
                     return [
                         'id'    => $result->id,
-                        'url'   => route($specification['route'], $result->id),
+                        'url'   => route(is_array($specification['route']) ? $specification['route'][0] : $specification['route'], is_array($specification['route']) ? array_merge([$result->id],  $specification['route'][1]) : $result->id),
                         'title' => $title,
                         'info'  => $info,
                     ];
