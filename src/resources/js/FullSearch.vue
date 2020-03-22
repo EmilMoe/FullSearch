@@ -285,9 +285,11 @@ export default {
         },
         /**
          * Query server for search results.
+         *
+         * @param {string} keyword
          */
-        query() {
-            this.axios.get('/api/full-search?keyword='+ this.keyword).then(response => {
+        query(keyword) {
+            this.axios.get('/api/full-search?keyword='+ keyword).then(response => {
                 if (this.debounce === null) {
                     return
                 }
@@ -365,8 +367,9 @@ export default {
             }
 
             clearTimeout(this.debounce)
+
             this.debounce = setTimeout(() => {
-                this.query()
+                this.query(keyword)
             }, 250)
         }
     }
