@@ -13,15 +13,10 @@
     }],
     "require": {
         "illuminate/support": "~5.8.0|^6.0|^7.0",
-        "php": "~7.2",
-        "emilmoe/base": "*"
+        "php": "~7.2"
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0"
-    },
-    "suggest": {
-        "emilmoe/groundwork": "To display Vue widgets properly.",
-        "emilmoe/autoloader": "Autoload assets."
     },
     "autoload": {
         "psr-4": {
@@ -40,12 +35,6 @@
         "laravel": {
             "providers": [
                 "EmilMoe\\FullSearch\\FullSearchServiceProvider"
-            ]
-        },
-        "emilmoe": {
-            "autoloader": [
-                "emilmoe/fullsearch/src/resources/js",
-                "emilmoe/fullsearch/src/resources/sass/fullsearch"
             ]
         }
     }
