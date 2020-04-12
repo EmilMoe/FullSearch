@@ -17,9 +17,7 @@ class FullSearchAPIController extends Controller
      */
     public function index(Request $request)
     {
-        return Cache::remember('full-search-'. $request->input('keyword'), 60, function() use ($request) {
-            return (new FullSearch)->search($request->keyword);
-        });
+        return (new FullSearch)->search($request->keyword);
     }
 
     /**
