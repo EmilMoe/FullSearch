@@ -85,11 +85,11 @@ class FullSearch
     private function generateUrl($params, int $id): string
     {
         if (is_array($params)) {
-            return route($params[0], array_merge([$result->id], $params[1]));
+            return route($params[0], array_merge([$id], $params[1]));
         }
 
         if (! is_array($params)) {
-            return route($params, $result->id);
+            return route($params, $id);
         }
 
         if (is_callable($params)) {
