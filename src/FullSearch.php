@@ -64,7 +64,7 @@ class FullSearch
 
                     return [
                         'id'    => $result->id,
-                        'url'   => $this->generateUrl($specification['route'], $result->id),
+                        'url'   => $this->generateUrl($specification['route'], $result->id, $result),
                         'title' => $title,
                         'info'  => $info,
                     ];
@@ -82,18 +82,18 @@ class FullSearch
      * @param  int          $id
      * @return string
      */
-    private function generateUrl($params, int $id): string
+    private function generateUrl($params, int $id, $result): string
     {
+        if (is_callable($params)) {
+            return call_user_func($params, $id, $result);
+        }
+
         if (is_array($params)) {
             return route($params[0], array_merge([$id], $params[1]));
         }
 
         if (! is_array($params)) {
             return route($params, $id);
-        }
-
-        if (is_callable($params)) {
-            return call_user_func($params, [$id, $result]);
         }
     }
 
