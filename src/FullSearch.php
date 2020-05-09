@@ -64,7 +64,7 @@ class FullSearch
 
                     return [
                         'id'    => $result->id,
-                        'url'   => route(is_array($specification['route']) ? $specification['route'][0] : $specification['route'], is_array($specification['route']) ? array_merge([$result->id],  $specification['route'][1]) : $result->id),
+                        'url'   => $this->generateUrl($specification['route'], $result->id),
                         'title' => $title,
                         'info'  => $info,
                     ];
@@ -73,6 +73,28 @@ class FullSearch
         });
 
         return $results;
+    }
+
+    /**
+     * Generate URL.
+     *
+     * @param  string|array $params
+     * @param  int          $id
+     * @return string
+     */
+    private function generateUrl($params, int $id): string
+    {
+        if (is_array($params)) {
+            return route($params[0], array_merge([$result->id], $params[1]));
+        }
+
+        if (! is_array($params)) {
+            return route($params, $result->id);
+        }
+
+        if (is_callable($params)) {
+            return call_user_func($params, [$id, $result]);
+        }
     }
 
     /**
