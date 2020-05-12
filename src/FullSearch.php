@@ -14,7 +14,7 @@ class FullSearch
      * @param string $keyword
      * @return array
      */
-    public function search(string $keyword): array
+    public function search(string $keyword = ''): array
     {
         $results = [];
 
