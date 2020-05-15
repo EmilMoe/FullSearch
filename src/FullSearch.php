@@ -11,10 +11,10 @@ class FullSearch
     /**
      * Query for search results.
      *
-     * @param null|string $keyword
+     * @param string $keyword
      * @return array
      */
-    public function search(?string $keyword = ''): array
+    public function search(string $keyword = ''): array
     {
         $results = [];
 
