@@ -289,7 +289,7 @@ export default {
          * @param {string} keyword
          */
         query(keyword) {
-            this.axios.get('/api/full-search?keyword='+ keyword || '').then(response => {
+            this.axios.get('/api/full-search?keyword='+ keyword).then(response => {
                 if (this.debounce === null) {
                     return
                 }

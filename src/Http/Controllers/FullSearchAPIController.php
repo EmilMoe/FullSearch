@@ -17,7 +17,7 @@ class FullSearchAPIController extends Controller
      */
     public function index(Request $request)
     {
-        return (new FullSearch)->search($request->keyword);
+        return (new FullSearch)->search((string) $request->keyword);
     }
 
     /**
