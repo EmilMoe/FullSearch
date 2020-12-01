@@ -62,7 +62,7 @@
             </div>
         </div>
         <div v-if="logo !== ''" class="full-search-logo">
-            <img :src="logo" alt="">
+            <img :src="logo" alt="" class="mx-auto">
         </div>
     </div>
 </template>
