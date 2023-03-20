@@ -1,3 +1,1 @@
-Vue.component('FullSearch', (resolve) => { require([
-    './FullSearch'
-], resolve) })
+Vue.component('FullSearch', './FullSearch')
