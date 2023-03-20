@@ -1,3 +1,3 @@
 import Vue from 'vue'
 
-Vue.component('FullSearch', require('./FullSearch'))
+Vue.component('FullSearch', () => import('./FullSearch'))
