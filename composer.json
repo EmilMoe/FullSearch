@@ -28,6 +28,7 @@
             "Tests\\": "tests/"
         }
     },
+    "minimum-stability": "stable",
     "scripts": {
         "test": "phpunit"
     },
